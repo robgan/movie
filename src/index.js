@@ -38,11 +38,10 @@ const router = createBrowserRouter([
   {
     path: "/",
     element: <Landing />,
-    // error: <ErrorPage></ErrorPage>,
   },
   {
-    path: "/newGroup",
-    element: <NewGroup />,
+      path: "/newGroup",
+      element: <NewGroup />,
   },
   {
     path: "/joinGroup",
