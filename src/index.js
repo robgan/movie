@@ -32,24 +32,24 @@ const theme = createTheme({
 
 const router = createBrowserRouter([
   {
-    path: "/movie",
+    path: "/",
     element: <Landing></Landing>,
     error: <ErrorPage></ErrorPage>,
   },
   {
-    path: "movie/newGroup",
+    path: "newGroup",
     element: <NewGroup />,
   },
   {
-    path: "movie/joinGroup",
+    path: "joinGroup",
     element: <JoinGroup />,
   },
   {
-    path: "movie/default",
+    path: "default",
     element: <Default />,
   },
   {
-    path: "movie/suggestion",
+    path: "suggestion",
     element: <Suggestion />,
   },
 ]);
