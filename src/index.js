@@ -4,7 +4,11 @@ import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import {
+  createBrowserRouter,
+  createHashRouter,
+  RouterProvider,
+} from "react-router-dom";
 import Landing from "./Landing";
 import ErrorPage from "./ErrorPage";
 import Suggestion from "./Suggestion";
@@ -30,26 +34,26 @@ const theme = createTheme({
   },
 });
 
-const router = createBrowserRouter([
+const router = createHashRouter([
   {
-    path: "/",
-    element: <Landing></Landing>,
+    path: "/*",
+    element: <Landing />,
     error: <ErrorPage></ErrorPage>,
   },
   {
-    path: "newGroup",
+    path: "/newGroup",
     element: <NewGroup />,
   },
   {
-    path: "joinGroup",
+    path: "/joinGroup",
     element: <JoinGroup />,
   },
   {
-    path: "default",
+    path: "/default",
     element: <Default />,
   },
   {
-    path: "suggestion",
+    path: "/suggestion",
     element: <Suggestion />,
   },
 ]);

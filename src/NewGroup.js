@@ -15,7 +15,7 @@ export default function NewGroup() {
         <TextField label="Group Name" variant="outlined" sx={{ my: 1 }} />
         <TextField label="Your Name" variant="outlined" sx={{ my: 1 }} />
         <Button
-          href="default"
+          href="/default"
           variant="contained"
           color="primary"
           sx={{ my: 1 }}

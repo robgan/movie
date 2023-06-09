@@ -20,10 +20,10 @@ export default function Landing() {
         }}
         spacing={1}
       >
-        <Button href="newGroup" variant="contained" color="primary">
+        <Button href="/newGroup" variant="contained" color="primary">
           Create Group
         </Button>
-        <Button href="joinGroup" variant="contained" color="secondary">
+        <Button href="/joinGroup" variant="contained" color="secondary">
           Join Group
         </Button>
       </Stack>
