@@ -38,24 +38,24 @@ const router = createBrowserRouter([
   {
     path: "/",
     element: <Landing />,
-    error: <ErrorPage></ErrorPage>,
+    // error: <ErrorPage></ErrorPage>,
   },
   {
     path: "/newGroup",
     element: <NewGroup />,
   },
-  // {
-  //   path: "/joinGroup",
-  //   element: <JoinGroup />,
-  // },
-  // {
-  //   path: "/default",
-  //   element: <Default />,
-  // },
-  // {
-  //   path: "/suggestion",
-  //   element: <Suggestion />,
-  // },
+  {
+    path: "/joinGroup",
+    element: <JoinGroup />,
+  },
+  {
+    path: "/default",
+    element: <Default />,
+  },
+  {
+    path: "/suggestion",
+    element: <Suggestion />,
+  },
 ]);
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
