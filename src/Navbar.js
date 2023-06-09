@@ -55,13 +55,13 @@ export default function Navbar() {
       <Divider />
       <List>
         <ListItem disablePadding>
-          <ListItemButton href="newGroup">
+          <ListItemButton href="movie/newGroup">
             <ListItemIcon>{<CircleIcon />}</ListItemIcon>
             <ListItemText> Create New Group</ListItemText>
           </ListItemButton>
         </ListItem>
         <ListItem disablePadding>
-          <ListItemButton href="joinGroup">
+          <ListItemButton href="movie/joinGroup">
             <ListItemIcon>{<CircleIcon />}</ListItemIcon>
             <ListItemText> Join Group</ListItemText>
           </ListItemButton>
@@ -102,7 +102,7 @@ export default function Navbar() {
           sx={{ flexGrow: 1 }}
         ></Typography>
         <Button
-          href="suggestion"
+          href="movie/suggestion"
           variant="contained"
           color="secondary"
           startIcon={<AddIcon />}

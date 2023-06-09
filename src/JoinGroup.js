@@ -16,7 +16,7 @@ export default function JoinGroup() {
         <TextField label="Group Password" variant="outlined" sx={{ my: 1 }} />
         <TextField label="Your Name" variant="outlined" sx={{ my: 1 }} />
         <Button
-          href="default"
+          href="movie/default"
           variant="contained"
           color="primary"
           sx={{ my: 1 }}

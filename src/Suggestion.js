@@ -31,7 +31,7 @@ export default function Suggestion() {
           renderInput={(params) => <TextField {...params} label="Movie" />}
         />
         <Button
-          href="default"
+          href="movie/default"
           variant="contained"
           color="primary"
           sx={{ my: 1 }}

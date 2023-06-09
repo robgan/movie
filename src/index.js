@@ -37,19 +37,19 @@ const router = createBrowserRouter([
     error: <ErrorPage></ErrorPage>,
   },
   {
-    path: "newGroup",
+    path: "movie/newGroup",
     element: <NewGroup />,
   },
   {
-    path: "joinGroup",
+    path: "movie/joinGroup",
     element: <JoinGroup />,
   },
   {
-    path: "default",
+    path: "movie/default",
     element: <Default />,
   },
   {
-    path: "suggestion",
+    path: "movie/suggestion",
     element: <Suggestion />,
   },
 ]);
