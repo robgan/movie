@@ -1,25 +1,32 @@
-import logo from './logo.svg';
-import './App.css';
+import * as React from "react";
+import { createTheme, ThemeProvider } from "@mui/material/styles";
+import { teal, pink } from "@mui/material/colors";
 
-function App() {
+import Landing from "./Landing";
+import Default from "./Default";
+import Suggestion from "./Suggestion";
+
+const theme = createTheme({
+  palette: {
+    primary: {
+      main: teal[500],
+      lighter: teal[400],
+      darker: teal[600],
+    },
+    secondary: {
+      main: pink["A400"],
+      lighter: pink["A200"],
+      darker: pink["A700"],
+    },
+  },
+});
+
+export default function Palette() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <ThemeProvider theme={theme}>
+      <Landing></Landing>
+      <Default></Default>
+      <Suggestion></Suggestion>
+    </ThemeProvider>
   );
 }
-
-export default App;
