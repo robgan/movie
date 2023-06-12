@@ -19,10 +19,11 @@ export default function Suggestion() {
     method: "GET",
     headers: {
       accept: "application/json",
-      Authorization:
-        "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI5ZDQwMTUzNGY1NWVkYmI5YTU3MWUwNTY5ZmNiOWNiOCIsInN1YiI6IjY0ODMzYjU4YmYzMWYyNTA1NzA1OTI0OCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.BGJq8N2lK0ECJJaBmeYi3iMiOg1y_QZVrZelTt7A_SU",
+      Authorization: process.env.REACT_APP_TMDB,
     },
   };
+
+  console.log("api key" + process.env.REACT_APP_TMDB);
 
   async function getMovies() {
     const response = await fetch(
@@ -35,6 +36,7 @@ export default function Suggestion() {
     for (var i in data.results) {
       top20movies.push(data.results[i].original_title);
     }
+    console.log(top20movies);
     setMovies(top20movies);
   }
 
