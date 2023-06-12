@@ -6,8 +6,10 @@ import MovieCard from "./MovieCard";
 
 import DoneIcon from "@mui/icons-material/Done";
 import CloseIcon from "@mui/icons-material/Close";
+import AddIcon from "@mui/icons-material/Add";
+import SpeedDialIcon from "@mui/material/SpeedDialIcon";
 
-import { Box } from "@mui/material";
+import { Box, SpeedDial, SpeedDialAction } from "@mui/material";
 import Navbar from "./Navbar";
 
 export default function Default() {
@@ -51,6 +53,31 @@ export default function Default() {
         >
           <DoneIcon style={{ fontSize: 60 }} />
         </IconButton>
+        <SpeedDial
+          ariaLabel="SpeedDial basic example"
+          FabProps={{
+            sx: {
+              bgcolor: "secondary.main",
+              "&:hover": {
+                bgcolor: "secondary.darker",
+              },
+            },
+          }}
+          sx={{
+            position: "absolute",
+            bottom: 16,
+            right: 16,
+            bgcolor: "secondary",
+          }}
+          icon={<SpeedDialIcon />}
+        >
+          <SpeedDialAction
+            key="New Suggestion"
+            icon={<AddIcon />}
+            tooltipTitle="New Suggestion"
+            href="/suggestion"
+          />
+        </SpeedDial>
       </Box>
     </Box>
   );

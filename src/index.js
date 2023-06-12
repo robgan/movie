@@ -40,8 +40,8 @@ const router = createBrowserRouter([
     element: <Landing />,
   },
   {
-      path: "/newGroup",
-      element: <NewGroup />,
+    path: "/newGroup",
+    element: <NewGroup />,
   },
   {
     path: "/joinGroup",
