@@ -2,24 +2,61 @@ import * as React from "react";
 import IconButton from "@mui/material/IconButton";
 import { useTheme } from "@mui/material/styles";
 
+import { readSuggestions } from "./FirebaseAPI";
+
 import MovieCard from "./MovieCard";
 
 import DoneIcon from "@mui/icons-material/Done";
 import CloseIcon from "@mui/icons-material/Close";
-import AddIcon from "@mui/icons-material/Add";
-import SpeedDialIcon from "@mui/material/SpeedDialIcon";
 
 import { Box, SpeedDial, SpeedDialAction } from "@mui/material";
 import Navbar from "./Navbar";
 
 export default function Default() {
   const theme = useTheme();
+  const groupName = "Fam";
+
+  const [queue, setQueue] = React.useState([
+    {
+      name: "No Suggestions Yet",
+      year: "",
+      genre: "",
+      runtime: "",
+      summary: "",
+    },
+  ]);
+  const [sugg, setSugg] = React.useState(queue[0]);
+
+  // get list of suggestions
+  React.useEffect(() => {
+    readSuggestions(groupName).then((suggestions) => {
+      if (suggestions.length == 0) {
+      } else {
+        setQueue(suggestions);
+        setSugg(suggestions[0]);
+      }
+    });
+  }, []);
+
+  function nextSuggestion() {
+    if (queue.length > 1) {
+      setQueue(queue.shift());
+      setSugg(queue[0]);
+    } else {
+      setSugg({
+        name: "No more suggestions",
+        year: "",
+        genre: "",
+        runtime: "",
+        summary: "",
+      });
+    }
+  }
 
   return (
     <Box>
       <Navbar></Navbar>
-      <MovieCard></MovieCard>
-
+      <MovieCard suggestion={sugg}></MovieCard>
       <Box
         sx={{
           display: "flex",
@@ -30,6 +67,7 @@ export default function Default() {
         <IconButton
           aria-label="close"
           size="large"
+          onClick={nextSuggestion}
           sx={{
             bgcolor: "secondary.main",
             m: 1,
@@ -43,6 +81,7 @@ export default function Default() {
         <IconButton
           aria-label="done"
           size="large"
+          onClick={nextSuggestion}
           sx={{
             bgcolor: "primary.main",
             m: 1,
@@ -53,31 +92,6 @@ export default function Default() {
         >
           <DoneIcon style={{ fontSize: 60 }} />
         </IconButton>
-        <SpeedDial
-          ariaLabel="SpeedDial basic example"
-          FabProps={{
-            sx: {
-              bgcolor: "secondary.main",
-              "&:hover": {
-                bgcolor: "secondary.darker",
-              },
-            },
-          }}
-          sx={{
-            position: "absolute",
-            bottom: 16,
-            right: 16,
-            bgcolor: "secondary",
-          }}
-          icon={<SpeedDialIcon />}
-        >
-          <SpeedDialAction
-            key="New Suggestion"
-            icon={<AddIcon />}
-            tooltipTitle="New Suggestion"
-            href="/suggestion"
-          />
-        </SpeedDial>
       </Box>
     </Box>
   );

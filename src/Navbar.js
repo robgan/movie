@@ -19,6 +19,8 @@ import CircleIcon from "@mui/icons-material/Circle";
 import MenuIcon from "@mui/icons-material/Menu";
 import AddIcon from "@mui/icons-material/Add";
 
+import writeSuggestion from "./FirebaseAPI";
+
 export default function Navbar() {
   const [state, setState] = React.useState({
     left: false,
@@ -34,6 +36,10 @@ export default function Navbar() {
 
     setState({ ...state, [anchor]: open });
   };
+
+  // const handleInsert = () => {
+  //   writeSuggestion();
+  // };
 
   const list = (anchor) => (
     <Box
@@ -105,6 +111,7 @@ export default function Navbar() {
           href="/suggestion"
           variant="contained"
           color="secondary"
+          // onClick={handleInsert()}
           startIcon={<AddIcon />}
         >
           New

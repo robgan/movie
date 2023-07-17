@@ -25,7 +25,7 @@ const ExpandMore = styled((props) => {
   }),
 }));
 
-export default function MovieCard() {
+export default function MovieCard({ suggestion }) {
   const [expanded, setExpanded] = React.useState(false);
 
   const handleExpandClick = () => {
@@ -52,11 +52,9 @@ export default function MovieCard() {
         />
         <CardContent>
           <Typography gutterBottom variant="h5" component="div">
-            Ready Player One
+            {suggestion.name}
           </Typography>
-          <Typography gutterBottom variant="subtitle1" component="div">
-            2018 ‧ Sci-fi/Adventure ‧ 2h 20m
-          </Typography>
+          <Description suggestion={suggestion}></Description>
           <Typography
             variant="body2"
             color="text.secondary"
@@ -67,14 +65,7 @@ export default function MovieCard() {
               WebkitBoxOrient: "vertical",
             }}
           >
-            In 2045 the planet is on the brink of chaos and collapse, but people
-            find salvation in the OASIS: an expansive virtual reality universe
-            created by eccentric James Halliday. When Halliday dies, he promises
-            his immense fortune to the first person to discover a digital Easter
-            egg that's hidden somewhere in the OASIS. When young Wade Watts
-            joins the contest, he finds himself becoming an unlikely hero in a
-            reality-bending treasure hunt through a fantastical world of
-            mystery, discovery and danger.
+            {suggestion.summary}
           </Typography>
         </CardContent>
         <CardActions disableSpacing>
@@ -89,5 +80,18 @@ export default function MovieCard() {
         </CardActions>
       </Card>
     </Box>
+  );
+}
+
+function Description({ suggestion }) {
+  if (suggestion.name == "No Suggestions Yet") {
+    return (
+      <Typography gutterBottom variant="subtitle1" component="div"></Typography>
+    );
+  }
+  return (
+    <Typography gutterBottom variant="subtitle1" component="div">
+      {suggestion.year} ‧ {suggestion.genre} ‧ {suggestion.runtime}
+    </Typography>
   );
 }
