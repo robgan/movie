@@ -1,5 +1,5 @@
 import { initializeApp } from "firebase/app";
-import { child, get, getDatabase, ref, update } from "firebase/database";
+import { child, get, getDatabase, push, ref, update } from "firebase/database";
 
 // See: https://firebase.google.com/docs/web/learn-more#config-object
 const firebaseConfig = {
@@ -87,6 +87,32 @@ function writeSuggestion(
   });
 }
 
+function updateVote(groupName, movieName, vote) {
+  const db = getDatabase();
+
+  // const newKey = push(
+  //   child(ref(db, "suggestion/" + groupName + "/" + movieName), movieName)
+  // ).key;
+  // console.log(newKey);
+  const updates = {};
+  let movie = {};
+  get(child(ref(db, "suggestion/" + groupName), movieName)).then((snapshot) => {
+    movie = snapshot.val();
+    if (vote == 1) {
+      console.log("yes");
+      updates["/yes"] = movie.yes + 1;
+    } else {
+      console.log("no");
+      updates["/no"] = movie.no + 1;
+    }
+    update(ref(db, "suggestion/" + groupName + "/" + movieName), updates).catch(
+      (error) => {
+        alert("Unauthorized Access!");
+      }
+    );
+  });
+}
+
 async function readSuggestions(groupName) {
   const db = getDatabase();
   let q = [];
@@ -103,4 +129,10 @@ async function readSuggestions(groupName) {
   return q;
 }
 
-export { readSuggestions, writeGroup, writeMember, writeSuggestion };
+export {
+  readSuggestions,
+  updateVote,
+  writeGroup,
+  writeMember,
+  writeSuggestion,
+};

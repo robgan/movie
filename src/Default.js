@@ -2,7 +2,7 @@ import * as React from "react";
 import IconButton from "@mui/material/IconButton";
 import { useTheme } from "@mui/material/styles";
 
-import { readSuggestions } from "./FirebaseAPI";
+import { readSuggestions, updateVote } from "./FirebaseAPI";
 
 import MovieCard from "./MovieCard";
 
@@ -38,7 +38,8 @@ export default function Default() {
     });
   }, []);
 
-  function nextSuggestion() {
+  function nextSuggestion(val) {
+    updateVote(groupName, sugg.name, val);
     if (queue.length > 1) {
       setQueue(queue.shift());
       setSugg(queue[0]);
@@ -67,7 +68,7 @@ export default function Default() {
         <IconButton
           aria-label="close"
           size="large"
-          onClick={nextSuggestion}
+          onClick={() => nextSuggestion(0)}
           sx={{
             bgcolor: "secondary.main",
             m: 1,
@@ -81,7 +82,7 @@ export default function Default() {
         <IconButton
           aria-label="done"
           size="large"
-          onClick={nextSuggestion}
+          onClick={() => nextSuggestion(1)}
           sx={{
             bgcolor: "primary.main",
             m: 1,
