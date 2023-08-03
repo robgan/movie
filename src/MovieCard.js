@@ -45,11 +45,6 @@ export default function MovieCard({ suggestion }) {
           </IconButton>
         }
       >
-        <CardMedia
-          component="img"
-          image={require("./static/images/readyplayerone.jpg")}
-          title="ready player one"
-        />
         <CardContent>
           <Typography gutterBottom variant="h5" component="div">
             {suggestion.name}
@@ -91,7 +86,7 @@ function Description({ suggestion }) {
   }
   return (
     <Typography gutterBottom variant="subtitle1" component="div">
-      {suggestion.year} ‧ {suggestion.genre} ‧ {suggestion.runtime}
+      {suggestion.year} ‧ {suggestion.genre} ‧ {suggestion.runtime} minutes
     </Typography>
   );
 }

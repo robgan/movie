@@ -3,6 +3,7 @@ import {
   AppBar,
   Box,
   Button,
+  Collapse,
   Divider,
   Drawer,
   IconButton,
@@ -15,11 +16,14 @@ import {
   Typography,
 } from "@mui/material";
 
+import InboxIcon from "@mui/icons-material/MoveToInbox";
+import ExpandLess from "@mui/icons-material/ExpandLess";
+import ExpandMore from "@mui/icons-material/ExpandMore";
 import CircleIcon from "@mui/icons-material/Circle";
 import MenuIcon from "@mui/icons-material/Menu";
 import AddIcon from "@mui/icons-material/Add";
 
-import writeSuggestion from "./FirebaseAPI";
+import { readUserGroups } from "./FirebaseAPI";
 
 export default function Navbar() {
   const [state, setState] = React.useState({
@@ -33,13 +37,18 @@ export default function Navbar() {
     ) {
       return;
     }
-
     setState({ ...state, [anchor]: open });
   };
 
-  // const handleInsert = () => {
-  //   writeSuggestion();
-  // };
+  const [groups, setGroups] = React.useState([]);
+  const name = "Fishy";
+
+  // get list of groups
+  React.useEffect(() => {
+    readUserGroups(name).then((groups) => {
+      setGroups(groups);
+    });
+  }, []);
 
   const list = (anchor) => (
     <Box
@@ -48,16 +57,22 @@ export default function Navbar() {
       onClick={toggleDrawer(anchor, false)}
       onKeyDown={toggleDrawer(anchor, false)}
     >
-      <List>
-        {["Group 1", "Group 2", "Group 3"].map((text, index) => (
+      {groups.map((text, index) => (
+        <List sx={{ py: 0 }}>
           <ListItem key={text} disablePadding>
-            <ListItemButton>
+            <ListItemButton href="/default">
               <ListItemIcon>{<CircleIcon />}</ListItemIcon>
               <ListItemText primary={text} />
             </ListItemButton>
           </ListItem>
-        ))}
-      </List>
+          <ListItem key="Results" sx={{ pl: 4, py: 0, pr: 0 }}>
+            <ListItemButton href="/results">
+              <ListItemIcon>{<CircleIcon />}</ListItemIcon>
+              <ListItemText primary="Results" />
+            </ListItemButton>
+          </ListItem>
+        </List>
+      ))}
       <Divider />
       <List>
         <ListItem disablePadding>

@@ -30,8 +30,7 @@ export default function Default() {
   // get list of suggestions
   React.useEffect(() => {
     readSuggestions(groupName).then((suggestions) => {
-      if (suggestions.length == 0) {
-      } else {
+      if (suggestions.length != 0) {
         setQueue(suggestions);
         setSugg(suggestions[0]);
       }

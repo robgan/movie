@@ -37,12 +37,17 @@ function writeMember(groupName, name, location) {
   get(child(ref(db, "groups/"), groupName)).then((snapshot) => {
     if (snapshot.exists()) {
       const member = {
-        [name]: true,
+        [name]: name,
       };
 
       update(ref(db, "groups/" + groupName), member).then(() => {
         window.location.href = location;
       });
+
+      const user = {
+        [groupName]: groupName,
+      };
+      update(ref(db, "users/" + name), user);
       console.log(snapshot.val());
     } else {
       alert("No such group exists");
@@ -89,11 +94,6 @@ function writeSuggestion(
 
 function updateVote(groupName, movieName, vote) {
   const db = getDatabase();
-
-  // const newKey = push(
-  //   child(ref(db, "suggestion/" + groupName + "/" + movieName), movieName)
-  // ).key;
-  // console.log(newKey);
   const updates = {};
   let movie = {};
   get(child(ref(db, "suggestion/" + groupName), movieName)).then((snapshot) => {
@@ -107,10 +107,26 @@ function updateVote(groupName, movieName, vote) {
     }
     update(ref(db, "suggestion/" + groupName + "/" + movieName), updates).catch(
       (error) => {
-        alert("Unauthorized Access!");
+        alert("Unable to cast vote");
       }
     );
   });
+}
+
+async function readUserGroups(name) {
+  const db = getDatabase();
+  let q = [];
+  get(child(ref(db, "users/"), name)).then((snapshot) => {
+    if (snapshot.exists()) {
+      let s = snapshot.val();
+      console.log(s);
+      for (var i in s) {
+        console.log(s[i]);
+        q.push(s[i]);
+      }
+    }
+  });
+  return q;
 }
 
 async function readSuggestions(groupName) {
@@ -130,6 +146,7 @@ async function readSuggestions(groupName) {
 }
 
 export {
+  readUserGroups,
   readSuggestions,
   updateVote,
   writeGroup,

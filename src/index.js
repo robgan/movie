@@ -15,6 +15,7 @@ import Suggestion from "./Suggestion";
 import NewGroup from "./NewGroup";
 import JoinGroup from "./JoinGroup";
 import Default from "./Default";
+import Results from "./Results";
 
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { teal, pink } from "@mui/material/colors";
@@ -54,6 +55,10 @@ const router = createBrowserRouter([
   {
     path: "/suggestion",
     element: <Suggestion />,
+  },
+  {
+    path: "/results",
+    element: <Results />,
   },
 ]);
 
